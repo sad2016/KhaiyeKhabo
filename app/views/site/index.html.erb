@@ -1,0 +1,142 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+</head>
+<body id="pageBody">
+<div id="decorative1" style="position:relative">
+  <div class="container">
+    <div class="divPanel headerArea">
+      <div class="row-fluid">
+        <div class="span12">
+                  <div id="headerSeparator"></div>
+
+          <div class="row-fluid">
+            <div class="span6">
+
+              <div id="divHeaderText" class="page-content">
+                <div id="divHeaderLine1">Your Desired Recipies</div><br />
+                <div id="divHeaderLine2">Just one click away!</div><br /><br/>
+                <div>
+                  <%= form_tag 'http://web4.cs.ait.ac.th/khaiyekhabo/recipes/search', :method => "get" do %>
+                      <%= text_field_tag :search, params[:search] ,:placeholder => "Search for Recipes"%>
+                      <%= submit_tag("Search", :class => "btn btn-primary")%>
+                  <%end%>
+                </div>
+              </div>
+
+            </div>
+            <div class="span6">
+              <!--Edit Camera Slider here-->
+              <div id="camera_wrap">
+
+               <%= content_tag :div,data:{src:"/firstslideone.jpeg"} do -%><div class="camera_caption fadeFromBottom cap1">Hydrabadi Biryani</div><% end -%>
+                <%= content_tag :div,data:{src:"/firstslidetwo.jpg"} do -%><div class="camera_caption fadeFromBottom cap2">Mutton Mamsam</div><% end -%>
+                <%= content_tag :div,data:{src:"/firstslidethree.jpg"} do -%><div class="camera_caption fadeFromBottom cap1">Delicious Fuchka</div><% end -%>
+              </div>
+              <!--End Camera Slider here-->
+
+            </div>
+          </div>
+
+          <div id="headerSeparator2"></div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<div id="contentOuterSeparator"></div>
+
+<div class="container">
+
+  <div class="divPanel page-content">
+    <!--Edit Main Content Area here-->
+    <div class="row-fluid">
+
+      <div class="span12" id="divMain">
+
+        <h1>Welcome</h1>
+
+        <p>At <strong>Khaiye Khabo,</strong> we welcome you to a delicious world of exquisite south asian dishes available within a click away. With a wide range of cuisines to choose from, we guarantee you a sumptuous feast experience in our website.</p>
+
+        <p>Like many other global cuisines, South Asian cuisine is as varied as the countries on the continent. It is very much a part of the culture and history of the South Asian countries but there are some food commonalities between the various cultures. South Asian cuisine is exotic and flavorful. The clever use of cooking techniques and spices has transformed what were originally humble peasant food dishes into specialties that are now known the world over. Conversely, with many South Asian countries having a separate cuisine for the historical ruling King or Royal Family, the dichotomy between humble and royal food has lessened and dishes that were once only served to royalty can now be found in any common restaurant. </p>
+
+        <hr style="margin:45px 0 35px" />
+
+        <div class="row-fluid">
+
+          <div class="span4">
+            <h4>Our Passion</h4>
+            
+            <%= image_tag("/passion.jpg", class:"img-polaroid", style:"margin:5px 0px 15px;", alt:"",size: "100x100")%>
+            <p>Our passion for helping other people with trusted south-asian recipes, providing the best platform for all food-lovers drove us to  do intense research and gave us the impetus to turn hard work and inspiration into to a booming online recipe provider.  <br /></p>
+            
+          </div>
+
+          <div class="span4">
+            <h4>About Us</h4>
+            
+            <%= image_tag("/aboutus.jpg", class:"img-polaroid", style:"margin:5px 0px 15px;", alt:"", size: "100x100")%>
+            <p>Khaiye Khabo, your number one source for all south-asian recipes. We’re dedicated to giving you the very best of the south-asian taste, with a focus on dependability, customer service and uniqueness.   <br /></p>
+            
+          </div>
+
+          <div class="span4">
+            <h4>Chef's Choice</h4>
+            <%= image_tag("/chef.jpg", class:"img-polaroid", style:"margin:5px 0px 15px;", alt:"",size: "100x100")%>
+            <p>Coming soon!<br /></p>
+            
+          </div>
+
+        </div>
+
+        <hr style="margin:45px 0 35px" />
+
+        <div class="lead">
+          <h2 style="color:#30952D; font-family:Comic Sans;"><i>Some of Our Top Rated Recipes</i></h2>
+          <h3 style="color:#186515">Join us in this sublime recipe sharing festival at Khaiye Khabo</h3>
+        </div>
+        <br />
+        <%= content_tag :div,data:{src:"/home-3.jpg"} do -%><div class="camera_caption fadeFromBottom cap1">Lorem Ipsum is simply dummy text of the printing.</div><% end -%>
+
+        <div class="list_carousel responsive">
+          <ul id="list_photos">
+             <% @recipes.each do |recipe| %>
+                <li><%= link_to(image_tag(recipe.picture_url(:thumb), class:"img-polaroid"),recipe) if recipe.picture? %></li>
+            <% end %>
+          </ul>
+        </div>
+
+        </br>
+
+        <p>The cuisine of South Asia is focused principally on the cuisines of the countries of Bangladesh, India, Pakistan, Srilanka, Maldives and Nepal. South-Asian cuisine is as rich and diverse as the country itself. The cuisine of South-Asian is influenced by the cultural and religious beliefs of many people in these country. Vegetarian dishes are often paired with curry causes that can be very spicy. South-Asian cuisine typically features different kinds of rice as well as beans and peas. Typical spices are cumin, chili, turmeric, coriander, and ginger. People familiar with South-Asian food will immediately recognize the characteristic spice combinations. Moreoever, south-asian cuisine is also based on dishes made from wheat and rice with different vegetables as well as lentils. The majority of dishes containing meat use chicken, lamb or sometimes mutton.</p></br>
+        <!--Edit Blockquote here-->
+        <blockquote>
+
+          <h3 class="text-success">"The only time to eat diet food is while you're waiting for the steak to cook."</h3>
+          <small>Julia Child</small>
+
+        </blockquote>
+        <!--/End Blockquote-->
+        <p>Foods in this area of the world are flavoured with various types of chilli, black pepper, cloves, and other strong herbs and spices along with the flavoured butter ghee. Ginger is an ingredient that can be used in both savory and sweet recipes in South Asian cuisine. Chopped ginger is fried with meat and pickled ginger is often an accompaniment to boiled rice. Ginger juice and ginger boiled in syrup are used to make desserts. Turmeric and cumin are often used to make curries.</p>
+
+
+
+      </div>
+
+    </div>
+    <!--End Main Content Area here-->
+
+
+  </div>
+
+</div>
+
+<script type="text/javascript">$('#list_photos').carouFredSel({ responsive: true, width: '100%', scroll: 1, items: {width: 320, height: 210,visible: {min: 3, max: 3}} });</script>
+
+</body>
+</html>

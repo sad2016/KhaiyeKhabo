@@ -1,0 +1,9 @@
+I"Å(function() {
+  $(function() {
+    return $('.datepicker').datepicker({
+      format: 'dd/mm/yyyy'
+    });
+  });
+
+}).call(this);
+:ET

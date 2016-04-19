@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 1
+  title: "Pani Puri"
+  description: "sth"
+  ingredients: "sthh"
+  directions: "sthhh"
+  preptime: "10 mins"
+  cooktime: "20 mins"
+  picture: "image"
+  servings: 1
+  user_id: 1
+  picture: ""
+
+two:
+  id: 2
+  title: "MyString"
+  description: "MyText"
+  ingredients: "MyText"
+  directions: "MyText"
+  preptime: "MyString"
+  cooktime: "MyString"
+  picture: "MyString"
+  servings: 1
+  user_id: 2
+  picture: ""

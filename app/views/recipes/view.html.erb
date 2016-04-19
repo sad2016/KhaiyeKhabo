@@ -1,0 +1,23 @@
+<div id="contentOuterSeparator"></div>
+<div class="container">
+  <div class="divPanel page-content">
+    <div class="row-fluid">
+      <div class="span12">
+
+            <h1>Recipes</h1>
+            <div id="gridArea">
+              <ul id="tiles">
+
+          <% @recipes.each do |recipe| %>
+            <li>
+
+              <%=link_to(image_tag(recipe.picture_url, width:'350', height:'200'),recipe) %>
+              <h4><a href="#"><%= recipe.title %></a></h4>
+            </li>
+                    </ul>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

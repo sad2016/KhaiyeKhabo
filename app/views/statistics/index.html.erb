@@ -1,0 +1,31 @@
+<body id="pageBody">
+  <div class="container">
+    <div class="divPanel page-content">
+
+      <div class="row-fluid">
+
+      <div class="span12" id="divMain">
+
+      <h1>Statistics on Member Registration</h1>
+          <div>
+            <h3>Total Number of Members</h3>
+            There are <%= @user_count %> members currently.
+          </div>
+
+          <div>
+            <h3>Members who Registered in last 1 Month (Weekly Basis)</h3>
+            <%= column_chart User.where(role_id: 2).group_by_week(:created_at, format: "%B %d, %Y", range: 1.month.ago..Time.now).count %>
+          </div>
+          <div>
+            <h3>Members who Registered in last 1 Week (Daily Basis)</h3>
+            <%= column_chart User.where(role_id: 2).group_by_day(:created_at, format: "%B %d", range: 1.week.ago..Time.now).count %>
+          </div>
+          <div>
+            <h3>Members who Registered Yesterday (Hourly Basis)</h3>
+            <%= column_chart User.where(role_id: 2).group_by_hour(:created_at, format: "%d %b, %-l %p", range: 1.day.ago..Time.now).count %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

@@ -1,0 +1,18 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 1
+  content: "Hey"
+  user_id: 1
+  recipe_id: 1
+
+two:
+  id: 2
+  content: "Hii"
+  user_id: 2
+  recipe_id: 1
+
+three:
+  id: 3
+  content: "Hello"
+  recipe_id: 1

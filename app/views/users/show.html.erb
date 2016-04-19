@@ -1,0 +1,74 @@
+<body id="pageBody">
+<div class="container">
+  <div class="divPanel page-content">
+
+    <div class="row-fluid">
+
+      <div class="span12" id="divMain">
+        <div class="row-fluid">
+          <div class="span4">
+            <%= image_tag(@user.picture_url, :width=> "350", :height=> "200") if @user.picture? %>
+
+          </div>
+          <div class="span8">
+      <p>
+            <strong>Full Name:</strong>
+            <%= @user.fullname %>
+          </p>
+
+          <p>
+            <strong>Username:</strong>
+            <%= @user.username %>
+          </p>
+
+          <p>
+            <strong>Email:</strong>
+            <%= @user.email %>
+          </p>
+
+          <p>
+            <strong>Date of Birth:</strong>
+            <%= @user.datebirth%>
+          </p>
+
+          <p>
+            <strong>Occupation:</strong>
+            <%= @user.occupation %>
+          </p>
+
+          <p>
+            <strong>Other Interests:</strong>
+            <%= @user.otherinterest %>
+          </p>
+
+          <p>
+            <strong>Favorite Category:</strong>
+            <%= @user.cookcategory %>
+          </p>
+
+          <p>
+            <strong>Favourite Cook Book:</strong>
+            <%= @user.favcookbook %>
+          </p>
+
+          <p>
+            <strong>Location:</strong>
+            <%=ISO3166::Country[@user.location]%>
+          </p>
+
+          <% if user_signed_in? %>
+              <% if current_user.role == Role.find_by_name("Admin") %>
+                  <p>
+                    <strong>Is Member Banned</strong>
+                    <%= @user.isbanned %>
+                  </p>
+              <% end %>
+          <% end %>
+
+</div>
+      </div>
+    </div>
+  </div>
+</div></div>
+</body>
+

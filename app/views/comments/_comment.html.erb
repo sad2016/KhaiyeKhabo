@@ -1,0 +1,6 @@
+<div class="comment" data-time="<%= comment.created_at.to_i %>">
+  <%= image_tag(User.find_by_id(comment.user_id).picture_url(:thumb), width:'40') %>
+  <strong><%= User.find_by_id(comment.user_id).username %></strong>
+  <small><i>on <%= comment.created_at.strftime('%b %d, %Y at %I:%M %p') %></i></small>
+  <%= simple_format comment.content %>
+</div>

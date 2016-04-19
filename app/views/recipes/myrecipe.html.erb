@@ -1,0 +1,28 @@
+<div id="contentOuterSeparator"></div>
+<div class="container">
+  <div class="divPanel page-content">
+    <div class="row-fluid">
+      <div class="span12" id="divMain">
+
+        <h1>My Recipes</h1>
+
+        <div id="gridArea">
+          <ul type="none" id="tiles">
+            <% @myrecipes.each do |recipe| %>
+                <li>
+                  <%=link_to(image_tag(recipe.picture_url(:thumb), width:'350', height:'200'),recipe)if recipe.picture?  %>
+                  <div class="meta"><span></span><span class="pull-right">By <%= recipe.user.username %></span></div>
+                  <h4><%= recipe.title %></h4>
+                  <p><%=link_to("View Recipe",recipe)%></p>
+
+                </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+

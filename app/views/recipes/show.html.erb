@@ -1,0 +1,102 @@
+<div id="contentOuterSeparator"></div>
+<div class="container">
+  <div class="divPanel page-content">
+    <div class="row-fluid">
+      <div class="span12" id="divMain">
+
+        <div class="small-2 large-4 columns">
+          <% if current_user %>
+              Rate this Recipe! <%= rating_for @recipe, "recipe", disable_after_rate: false, cancel_place: 'right', star_path: "/" %>
+              <br>
+          <% end %>
+        <% if user_signed_in? %>
+            <% if current_user.id == @recipe.user_id %>
+                  <div class="pull-right">
+                    <%= link_to 'Edit', edit_recipe_path(@recipe), class: "btn btn-primary"  %>
+<%= link_to 'Delete', @recipe, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+                  </div>
+            <% end %>
+        <% end %>
+      </div>
+        <div class="row-fluid">
+          <div class="span4">
+            <%= image_tag(@recipe.picture_url) if @recipe.picture? %>
+
+          </div>
+          <div class="span8">
+            <p>
+              <strong>Title:</strong>
+              <%= @recipe.title %>
+            </p>
+
+            <p>
+              <strong>Preptime:</strong>
+              <%= @recipe.preptime %>
+            </p>
+
+            <p>
+              <strong>Cooktime:</strong>
+              <%= @recipe.cooktime %>
+            </p>
+
+            <p>
+              <strong>Servings:</strong>
+              <%= @recipe.servings %>
+            </p>
+
+            <p>
+              <strong>Cuisine:</strong>
+              <% if !@recipe.cuisine.nil? %>
+                  <%= @recipe.cuisine.name %>
+              <% else %>
+                  Unspecified
+              <% end %>
+            </p>
+
+            <p>
+              <strong>Category:</strong>
+              <% if !@recipe.cookcategory.nil? %>
+                  <%= @recipe.cookcategory.name %>
+              <% else %>
+                  Unspecified
+              <% end %>
+            </p>
+
+          </div>
+        </div>
+        <br>
+        <p>
+          <strong>Description:</strong>
+          <%= @recipe.description %>
+        </p>
+
+        <p>
+          <strong>Ingredients:</strong>
+          <%= @recipe.ingredients %>
+        </p>
+
+        <p>
+          <strong>Directions:</strong>
+          <%= @recipe.directions %>
+        </p>
+
+        <% unless @recipe.comments.empty? %>
+            <h5>Comments:</h5>
+        <% end %>
+
+        <div id="comments">
+          <% unless @recipe.comments.empty? %>
+              <%= render @recipe.comments %>
+          <% end %>
+        </div>
+
+       <!-- <h3>Add a comment:</h3>-->
+        <% if user_signed_in? %>
+            <%= render partial: 'comments/form' %>
+        <%end%>
+
+
+      </div>
+    </div>
+  </div>
+</div>

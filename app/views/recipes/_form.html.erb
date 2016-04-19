@@ -1,0 +1,53 @@
+<%= form_for(@recipe) do |f| %>
+    <% if @recipe.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
+
+          <ul>
+            <% @recipe.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.text_field :title , :placeholder=>"Title"%>
+    </div>
+    <div class="field">
+      <%= f.text_area :description, :placeholder=>"Description", class:"input-block-level" %>
+    </div>
+    <div class="field">
+      <%= f.text_area :ingredients, :placeholder=>"Ingredients", class:"input-block-level", :rows=> "7" %>
+    </div>
+    <div class="field">
+      <%= f.text_area :directions,  class:"input-block-level", :placeholder=>"Directions", :rows=> "7"%>
+    </div>
+    <div class="field">
+      <%= f.text_field :preptime , :placeholder=>"Preparation Time (in minutes)"%>
+    </div>
+    <div class="field">
+      <%= f.text_field :cooktime , :placeholder=>"Cook Time(in minutes)" %>
+    </div>
+    <div class="field">
+      <%= f.number_field :servings , :placeholder=>"Number of Servings"%>
+    </div>
+    <div class="field">
+      <%= f.collection_select(:cuisine_id, Cuisine.all, "id", "name", {prompt: "Select a Cuisine"}) %>
+    </div>
+    <div class="field">
+      <%= f.collection_select(:cookcategory_id, Cookcategory.all, "id", "name", {prompt: "Select a Category"}) %>
+    </div>
+    <div class="field">
+      <%= f.label :picture %>
+      <%= f.file_field :picture %>
+    </div><br>
+    <div class="actions">
+      <% if @recipe.new_record? %>
+          <%= f.submit "Upload Recipe", class: "btn btn-success"  %>
+      <% else %>
+          <%= f.submit "Update Recipe", class: "btn btn-success"  %>
+      <% end %>
+
+    </div>
+<% end %>

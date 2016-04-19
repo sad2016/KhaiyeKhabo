@@ -1,0 +1,54 @@
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+    <div class="field">
+
+      <%= f.text_field :fullname , :placeholder => "Full Name" %>
+    </div>
+  <div class="field">
+
+    Date of Birth: <%=f.date_select :datebirth, target: "_top", :start_year=> 1900, :end_year=>Date.today.year %>
+  </div>
+    <div class="field">
+
+      <%= f.text_field :occupation , :placeholder => "Occupation"%>
+    </div>
+    <div class="field">
+      <%= f.text_field :otherinterest, :placeholder =>"Other Interests (Besides Cooking)" %>
+    </div>
+    <div class="field">
+      <%= f.collection_select(:cookcategory_id, Cookcategory.all, "id", "name", {prompt: "Select your Favourite Category"}) %>
+    </div>
+    <div class="field">
+
+      <%= f.text_field :favcookbook, :placeholder =>  "Favourite Cook Book"%>
+    </div>
+    <div class="field">
+
+      Location: <%= f.country_select(:location) %>
+    </div>
+    <div class="field">
+
+      Picture: <%= f.file_field :picture %>
+    </div>
+
+<br>
+  <div class="actions">
+    <%= f.submit "Update", class: "btn btn-success" %>
+    <%= link_to 'Cancel', user_path(@user.id), class:"btn btn-danger", style:"color: #fff;" %>
+
+  </div>
+
+
+<% end %>

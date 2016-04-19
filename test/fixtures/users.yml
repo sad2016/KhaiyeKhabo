@@ -1,0 +1,32 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 1
+  username: "userone"
+  role_id: 1
+  encrypted_password: "abcdefghi"
+  email: one@gmail.com
+
+
+two:
+  id: 2
+  username: "usertwo"
+  role_id: 2
+  encrypted_password: "abcdefghi"
+  email: two@gmail.com
+
+
+three:
+  id: 3
+  username: "userthree"
+  role_id: 2
+  encrypted_password: "abcdefghi"
+  email: three@gmail.com
+
+four:
+  id: 4
+  username: "userfour"
+  role_id: 1
+  encrypted_password: "abcdefghi"
+  email: four@gmail.com
+

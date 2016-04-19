@@ -1,0 +1,43 @@
+<body id="pageBody"><div class="container">
+  <div class="divPanel page-content">
+
+    <div class="row-fluid">
+
+      <div class="span12" id="divMain">
+
+      <h1>Listing Members</h1>
+
+          <table class="table">
+            <thead>
+            <tr>
+              <th>Email</th>
+              <th>Username</th>
+              <th>Banned</th>
+              <th colspan="3"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @users.each do |user| %>
+                <tr>
+                  <td><%= user.email %></td>
+                  <td><%= user.username %></td>
+                  <%if(user.isbanned == false)%>
+                      <td>No</td>
+                  <%else%>
+                      <td>Yes</td>
+                  <%end%>
+                  <td><%= link_to 'Show', user, class:"btn btn-primary", style:"color: #fff;" %></td>
+                  <td><%= link_to 'Ban/Unban Member', user_path(user.id, user:{isbanned: !user.isbanned}), method: :put, data: { confirm: 'Are you sure?' }, class:"btn btn-danger", style:"color: #fff;"  %></td>
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
+
+          <br>
+
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+
