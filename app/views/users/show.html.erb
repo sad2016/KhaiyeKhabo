@@ -51,6 +51,15 @@
             <%= @user.favcookbook %>
           </p>
 
+            <p>
+              <strong>Phone Number:</strong>
+              <%= @user.phone_number %>
+            </p>
+            <p>
+              <strong>Address:</strong>
+              <%= @user.address %>
+            </p>
+
           <p>
             <strong>Location:</strong>
             <%=ISO3166::Country[@user.location]%>

@@ -35,6 +35,21 @@
             </p>
 
             <p>
+              <strong>Ingredients:</strong>
+              <%count=0%>
+              <br>
+              <% @ingredients.each do |ind| %>
+                <%= ind.name+ " "%>
+                  <%= @amountArray[count] %>
+                  <%= @unitArray[count] %>
+
+                  <%count=count+1%>
+                  <br>
+              <% end %>
+
+            </p>
+
+            <p>
               <strong>Cooktime:</strong>
               <%= @recipe.cooktime %>
             </p>
@@ -70,10 +85,6 @@
           <%= @recipe.description %>
         </p>
 
-        <p>
-          <strong>Ingredients:</strong>
-          <%= @recipe.ingredients %>
-        </p>
 
         <p>
           <strong>Directions:</strong>

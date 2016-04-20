@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :ingredients
   resources :comments
   post '/rate' => 'rater#create', :as => 'rate'
   resources :recipes do

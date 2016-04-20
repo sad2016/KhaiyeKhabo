@@ -17,9 +17,17 @@
     <div class="field">
       <%= f.text_area :description, :placeholder=>"Description", class:"input-block-level" %>
     </div>
-    <div class="field">
-      <%= f.text_area :ingredients, :placeholder=>"Ingredients", class:"input-block-level", :rows=> "7" %>
-    </div>
+    <div class="field inline">
+      <% count = 0 %>
+      <% while count<5 %>
+          <div class="form-inline">
+          <input type="textbox" name="ingredient[]" placeholder="Ingredient">
+          <input type="textbox" name="amount[]" placeholder="Amount" width= "250px">
+          <input type="textbox" name="unit[]" placeholder="Unit">
+            </div>
+          <% count =count+1%>
+      <% end %> </div>
+    <br>
     <div class="field">
       <%= f.text_area :directions,  class:"input-block-level", :placeholder=>"Directions", :rows=> "7"%>
     </div>
@@ -42,6 +50,8 @@
       <%= f.label :picture %>
       <%= f.file_field :picture %>
     </div><br>
+
+
     <div class="actions">
       <% if @recipe.new_record? %>
           <%= f.submit "Upload Recipe", class: "btn btn-success"  %>
@@ -50,4 +60,7 @@
       <% end %>
 
     </div>
+
+
+
 <% end %>

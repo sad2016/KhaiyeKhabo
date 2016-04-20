@@ -1,6 +1,8 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
+  after_action :set_ingredients, only: [:create, :update]
   load_and_authorize_resource
+
   skip_authorize_resource :show => :show
   skip_authorize_resource :search => :search
   skip_authorize_resource :searchcuisine => :searchcuisine
@@ -19,12 +21,33 @@ class RecipesController < ApplicationController
   # GET /recipes/1
   # GET /recipes/1.json
   def show
+    @ingredientArray=Array.new
+    @amountArray=Array.new
+    @unitArray=Array.new
     @comment = Comment.new(recipe_id: @recipe.id, user_id: current_user.id) if user_signed_in?
+    @ingredientrecipe = IngredientRecipe.all.select("ingredient_id").where("recipe_id = #{@recipe.id}")
+    @ingredientrecipe.each do |ind|
+      @ingredientArray.push(ind.ingredient_id)
+      @amountArray.push(ind.amount.to_s)
+      @unitArray.push(ind.measurement_unit)
+    end
+    puts @amountArray
+    @ingredients = Ingredient.all.where("id in (:ingredArray)", ingredArray: @ingredientArray)
+    @ingredients.each do |ind|
+      puts ind.name
+    end
   end
+
+
 
   # GET /recipes/new
   def new
     @recipe = Recipe.new
+    @recipe.save
+
+   @ingredient = Ingredient.new
+ #   @ingredient.save
+  # @recipe.ingredients.create(Ingredient.new(name: "STH"))
   end
 
 
@@ -92,7 +115,17 @@ class RecipesController < ApplicationController
     def set_recipe
       @recipe = Recipe.find(params[:id])
     end
+    def set_ingredients
+      count = 0
 
+      params[:ingredient].each do |ingredient|
+        @ingredient = Ingredient.create(name: ingredient)
+        @ingredient_recipe = IngredientRecipe.create(ingredient_id:@ingredient.id, recipe_id:@recipe.id, amount:params[:amount][count], measurement_unit:params[:unit][count])
+        count=count+1
+      end
+
+
+    end
     def custom_json_for(value)
       list = value.map do |recipe| {
           :id => recipe.id.to_s,
@@ -103,6 +136,6 @@ class RecipesController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def recipe_params
-      params.require(:recipe).permit(:title, :description, :ingredients, :directions, :preptime, :cooktime, :servings, :cuisine_id, :cookcategory_id, :user_id, :picture)
+      params.require(:recipe).permit(:ingredient_id,:title, :description, :ingredients, :directions, :preptime, :cooktime, :servings, :cuisine_id, :cookcategory_id, :user_id, :picture, ingredient_recipes_attributes: [:id,:amount, :measurement_unit])
     end
 end
