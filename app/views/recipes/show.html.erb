@@ -40,8 +40,8 @@
               <br>
               <% @ingredients.each do |ind| %>
                 <%= ind.name+ " "%>
-                  <%= @amountArray[count] %>
-                  <%= @unitArray[count] %>
+                  <%= ind.amount.to_s + " " %>
+                  <%= ind.measurement_unit + " " %>
 
                   <%count=count+1%>
                   <br>

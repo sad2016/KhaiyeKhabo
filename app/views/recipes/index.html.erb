@@ -16,7 +16,7 @@
             <% @recipes.each do |recipe| %>
                 <li>
                   <%=link_to(image_tag(recipe.picture_url(:thumb), width:'350', height:'200'),recipe)if recipe.picture?  %>
-                  <div class="meta"><span></span><span class="pull-right"></span></div>
+                  <div class="meta"><span></span><span class="pull-right">By <%= recipe.user.username %></span></div>
                   <h4><%= recipe.title %></h4>
                   <p><%=link_to("View Recipe",recipe)%></p>
                 </li>

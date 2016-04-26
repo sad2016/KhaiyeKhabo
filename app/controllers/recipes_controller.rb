@@ -21,6 +21,8 @@ class RecipesController < ApplicationController
   # GET /recipes/1
   # GET /recipes/1.json
   def show
+    puts "sanjanaaaaaaaa"
+
     @ingredientArray=Array.new
     @amountArray=Array.new
     @unitArray=Array.new
@@ -29,9 +31,15 @@ class RecipesController < ApplicationController
     @ingredientrecipe.each do |ind|
       @ingredientArray.push(ind.ingredient_id)
       @amountArray.push(ind.amount.to_s)
+      puts ind.ingredient_id
+      puts ind.amount
+      puts ind.measurement_unit
+
       @unitArray.push(ind.measurement_unit)
     end
+    puts "heyyyyyyyyyyyyy"
     puts @amountArray
+    
     @ingredients = Ingredient.all.where("id in (:ingredArray)", ingredArray: @ingredientArray)
     @ingredients.each do |ind|
       puts ind.name
@@ -43,7 +51,7 @@ class RecipesController < ApplicationController
   # GET /recipes/new
   def new
     @recipe = Recipe.new
-    @recipe.save
+   # @recipe.save
 
    @ingredient = Ingredient.new
  #   @ingredient.save
@@ -65,7 +73,7 @@ class RecipesController < ApplicationController
 
   def searchcuisine
     @recipes = Recipe.all
-@searchcuisines = (!params[:search].blank?)? Recipe.all.where(cuisine_id: params[:searchcuisine]).where("title ilike ?", "%#{params[:search]}%") : Recipe.all.where(cuisine_id: params[:searchcuisine])
+    @searchcuisines = (!params[:search].blank?)? Recipe.all.where(cuisine_id: params[:searchcuisine]).where("title ilike ?", "%#{params[:search]}%") : Recipe.all.where(cuisine_id: params[:searchcuisine])
     @cuisine = Cuisine.find(params[:searchcuisine]).name
     @cuisineid= Cuisine.find(params[:searchcuisine]).id
   end
@@ -117,11 +125,15 @@ class RecipesController < ApplicationController
     end
     def set_ingredients
       count = 0
-
-      params[:ingredient].each do |ingredient|
-        @ingredient = Ingredient.create(name: ingredient)
-        @ingredient_recipe = IngredientRecipe.create(ingredient_id:@ingredient.id, recipe_id:@recipe.id, amount:params[:amount][count], measurement_unit:params[:unit][count])
-        count=count+1
+      if params[:ingredient]
+        params[:ingredient].each do |ingredient|
+          @ingredient = Ingredient.create(name: ingredient, amount:params[:amount][count], measurement_unit:params[:unit][count])
+          puts "heyyaa"
+          puts params[:amount][count]
+          puts params[:unit][count]
+          @ingredient_recipe = IngredientRecipe.create(ingredient_id:@ingredient.id, recipe_id:@recipe.id, amount:params[:amount][count], measurement_unit:params[:unit][count])
+          count=count+1
+        end
       end
 
 
