@@ -26,7 +26,7 @@
            <input type="text" name="ingredient[]" placeholder="Ingredient Name" class="form-control">
             <input type="text" name="amount[]" placeholder="Amount" width= "250px" class="form-control">
             <input type="text" name="unit[]" placeholder="Unit" class="form-control">
-            <a class="add-box" href="#">Add More Ingredients</a>
+            <a class="add-box" href="#">Add More</a>
           </p>
           <!--<p><input type="submit" value="Submit" /></p>-->
         <!--</form>-->
@@ -78,7 +78,7 @@
                 alert('Stop it!');
                 return false;
             }
-            var box_html = $('<p class="text-box"> <input type="text" name="ingredient[]" placeholder="Ingredientt" class="form-control"><input type="text" name="amount[]" placeholder="Amount" width= "250px" class="form-control"><input type="text" name="unit[]" placeholder="Unit" class="form-control"> <a href="#" class="remove-box">Remove Ingredient</a></p>');
+            var box_html = $('<p class="text-box"> <input type="text" name="ingredient[]" placeholder="Ingredient Name" class="form-control"><input type="text" name="amount[]" placeholder="Amount" width= "250px" class="form-control"><input type="text" name="unit[]" placeholder="Unit" class="form-control"> <a href="#" class="remove-box">Remove Ingredient</a></p>');
 
             box_html.hide();
             $('.my-form p.text-box:last').after(box_html);
